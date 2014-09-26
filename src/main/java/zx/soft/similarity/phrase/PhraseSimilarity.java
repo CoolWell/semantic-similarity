@@ -50,5 +50,5 @@ public class PhraseSimilarity implements Similaritable {
 		}
 		return total / first.length();
 	}
-
+	
 }
