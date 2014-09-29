@@ -7,7 +7,7 @@ import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 import zx.soft.similarity.util.BlankUtils;
 import zx.soft.similarity.util.FileUtils;
 import zx.soft.similarity.word.hownet.HownetMeta;
@@ -16,11 +16,11 @@ import zx.soft.similarity.word.hownet.HownetMeta;
  * 义原解析器, 包括义元数据的加载，义元的组织、索引、查询 以及义元的距离计算和相似度计算等.
  * 算法的核心思想请参看论文《汉语词语语义相似度计算研究》
  * 
- * @see zx.soft.similarity.Similaritable
+ * @see zx.soft.similarity.Similarityable
  * @deprecated
  */
 @Deprecated
-public abstract class SememeParser implements HownetMeta, Similaritable {
+public abstract class SememeParser implements HownetMeta, Similarityable {
 
 	protected Logger LOG = LoggerFactory.getLogger(this.getClass());
 

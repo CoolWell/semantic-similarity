@@ -4,7 +4,7 @@ package zx.soft.similarity;
  * 可以计算相似度的接口
  * 
  */
-public interface Similaritable {
+public interface Similarityable {
 
 	/**
 	 * 计算两个字符串的相似度，对于句子来说，计算的是句子相似度，对于词语则计算词语的相似度

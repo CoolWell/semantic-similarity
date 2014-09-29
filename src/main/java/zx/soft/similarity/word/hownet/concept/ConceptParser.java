@@ -8,7 +8,7 @@ import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 import zx.soft.similarity.util.BlankUtils;
 import zx.soft.similarity.util.FileUtils;
 import zx.soft.similarity.word.hownet.HownetMeta;
@@ -24,11 +24,11 @@ import zx.soft.similarity.word.hownet.sememe.SememeParser;
  * 	<li>两个义原集合的运算方式支持均值方式或Fuzzy方式</li>
  * </ol>
  * 
- * @see zx.soft.similarity.Similaritable
+ * @see zx.soft.similarity.Similarityable
  * @deprecated
  */
 @Deprecated
-public abstract class ConceptParser implements HownetMeta, Similaritable {
+public abstract class ConceptParser implements HownetMeta, Similarityable {
 
 	/** the logger */
 	protected Logger LOG = LoggerFactory.getLogger(this.getClass());

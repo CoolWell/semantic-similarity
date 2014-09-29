@@ -13,7 +13,7 @@ import javax.xml.stream.events.XMLEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 import zx.soft.similarity.word.hownet.HownetMeta;
 
 import com.google.common.collect.HashMultimap;
@@ -25,9 +25,9 @@ import com.google.common.collect.Multimap;
  * 
  * 为提高运算速度，义原的加载方式做了调整，只把义原的汉语定义和对应的Id加入到MultiMap对象中，并通过义原的层次化Id计算义原之间的相似度。<br/>
  * 
- * @see {@link zx.soft.similarity.Similaritable}
+ * @see {@link zx.soft.similarity.Similarityable}
  */
-public abstract class BaseSememeParser implements HownetMeta, Similaritable {
+public abstract class BaseSememeParser implements HownetMeta, Similarityable {
 
 	protected Logger LOG = LoggerFactory.getLogger(this.getClass());
 

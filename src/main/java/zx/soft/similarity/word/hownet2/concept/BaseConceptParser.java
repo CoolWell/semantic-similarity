@@ -34,7 +34,7 @@ import com.google.common.collect.Multimap;
  * 	<li>两个义原集合的运算方式，支持均值方式或Fuzzy方式</li>
  * </ol>
  * 
- * @see zx.soft.similarity.Similaritable
+ * @see zx.soft.similarity.Similarityable
  */
 public abstract class BaseConceptParser implements HownetMeta, WordSimilarity {
 

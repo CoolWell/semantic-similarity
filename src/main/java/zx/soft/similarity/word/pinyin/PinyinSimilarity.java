@@ -2,7 +2,7 @@ package zx.soft.similarity.word.pinyin;
 
 import java.util.Set;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 import zx.soft.similarity.util.EditDistance;
 import zx.soft.similarity.util.PinyinUtils;
 
@@ -10,7 +10,7 @@ import zx.soft.similarity.util.PinyinUtils;
  * 通过拼音计算两个词语是否相似，拼音的相似程度采用编辑距离算法，并进行归一化衡量
  * 
  */
-public class PinyinSimilarity implements Similaritable {
+public class PinyinSimilarity implements Similarityable {
 
 	@Override
 	public double getSimilarity(String item1, String item2) {

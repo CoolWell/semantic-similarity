@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 import zx.soft.similarity.word.hownet2.concept.BaseConceptParser;
 import zx.soft.similarity.word.hownet2.concept.XiaConceptParser;
 import zx.soft.similarity.word.hownet2.sememe.BaseSememeParser;
@@ -15,9 +15,9 @@ import zx.soft.similarity.word.hownet2.sememe.XiaSememeParser;
  * Hownet的主控制类, 通过知网的概念和义原及其关系计算汉语词语之间的相似度. 
  * 相似度的计算理论参考论文《汉语词语语义相似度计算研究》
  * 
- * @see zx.soft.similarity.Similaritable
+ * @see zx.soft.similarity.Similarityable
  */
-public class Hownet implements Similaritable {
+public class Hownet implements Similarityable {
 
 	/** the logger */
 	private static final Logger LOG = LoggerFactory.getLogger(Hownet.class);

@@ -2,9 +2,9 @@ package zx.soft.similarity.word.cilin;
 
 import java.util.Set;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 
-public class Cilin implements Similaritable {
+public class Cilin implements Similarityable {
 
 	private static Cilin instance = null;
 

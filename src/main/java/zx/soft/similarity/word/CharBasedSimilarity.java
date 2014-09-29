@@ -3,13 +3,13 @@ package zx.soft.similarity.word;
 import java.util.ArrayList;
 import java.util.List;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 
 /**
  * 字面相似度计算方法
  * 
  */
-public class CharBasedSimilarity implements Similaritable {
+public class CharBasedSimilarity implements Similarityable {
 
 	private final double alpha = 0.6;
 	private final double beta = 0.4;

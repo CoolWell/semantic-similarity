@@ -1,12 +1,12 @@
 package zx.soft.similarity.sentence.editdistance;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 
 /**
  * 编辑距离的父类，定义了其中的主要行为
  * 
  */
-public abstract class EditDistance implements Similaritable {
+public abstract class EditDistance implements Similarityable {
 
 	public abstract double getEditDistance(SuperString<? extends EditUnit> S, SuperString<? extends EditUnit> T);
 

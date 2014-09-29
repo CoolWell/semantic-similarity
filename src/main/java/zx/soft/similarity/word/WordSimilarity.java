@@ -1,7 +1,7 @@
 package zx.soft.similarity.word;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 
-public interface WordSimilarity extends Similaritable {
+public interface WordSimilarity extends Similarityable {
 
 }

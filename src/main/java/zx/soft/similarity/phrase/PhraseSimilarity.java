@@ -3,13 +3,13 @@ package zx.soft.similarity.phrase;
 import java.util.ArrayList;
 import java.util.List;
 
-import zx.soft.similarity.Similaritable;
+import zx.soft.similarity.Similarityable;
 
 /**
  * 一种简单的短语相似度计算方法，算法原理请参考《中文信息相似度计算理论与方法》一书P69.
  * 
  */
-public class PhraseSimilarity implements Similaritable {
+public class PhraseSimilarity implements Similarityable {
 
 	@Override
 	public double getSimilarity(String item1, String item2) {

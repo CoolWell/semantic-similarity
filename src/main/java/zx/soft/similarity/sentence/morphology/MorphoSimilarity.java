@@ -65,7 +65,7 @@ public class MorphoSimilarity implements SentenceSimilarity {
 
 	/**
 	 * 计算两个句子的相似度
-	 * @see zx.soft.similarity.Similaritable
+	 * @see zx.soft.similarity.Similarityable
 	 */
 	@Override
 	public double getSimilarity(String firstSen, String secondSen) {
