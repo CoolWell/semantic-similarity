@@ -11,9 +11,8 @@ import zx.soft.similarity.word.hownet2.sememe.BaseSememeParser;
 import zx.soft.similarity.word.hownet2.sememe.XiaSememeParser;
 
 /**
- * 概念解析器的实现,用于获取概念、计算概念的相似度等, 与原论文比较，加入了剪枝处理，
- * 当组合过多的时候，就自动停止后面的组合情况， 保证运行速度
- * 
+ * 概念解析器的实现,用于获取概念、计算概念的相似度等, 与原论文比较，
+ * 加入了剪枝处理， 当组合过多的时候，就自动停止后面的组合情况， 保证运行速度
  */
 public class XiaConceptParser extends BaseConceptParser {
 
@@ -29,7 +28,6 @@ public class XiaConceptParser extends BaseConceptParser {
 				e.printStackTrace();
 			}
 		}
-
 		return instance;
 	}
 
@@ -57,6 +55,7 @@ public class XiaConceptParser extends BaseConceptParser {
 
 	/**
 	 * 获取知网本身自带的概念，不组合处理
+	 * 
 	 * @param key
 	 * @return
 	 */
@@ -159,7 +158,7 @@ public class XiaConceptParser extends BaseConceptParser {
 			return oovConcepts;
 		}
 
-		//只获取倒排后的三个未识别词语，如果太多了，一方面会影响运行速度，另一方面组合过多的意义也不是很有用
+		// 只获取倒排后的三个未识别词语，如果太多了，一方面会影响运行速度，另一方面组合过多的意义也不是很有用
 		for (String concept_word : segmentOOV(oov_word, 3)) {
 			Collection<Concept> concepts = super.getConcepts(concept_word);
 			if (oovConcepts.size() == 0) {

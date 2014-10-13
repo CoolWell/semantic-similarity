@@ -3,8 +3,10 @@ package zx.soft.tendency.word;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,7 +32,7 @@ public class Training {
 		WordTendency tendency = new HownetWordTendency();
 		File f = new File("./dict/sentiment/负面情感词语（中文）.txt");
 		if (testPositive) {
-			//f = new File("./dict/sentiment/正面情感词语（中文）.txt");
+			// f = new File("./dict/sentiment/正面情感词语（中文）.txt");
 			f = new File("./dict/sentiment/正面评价词语（中文）.txt");
 		}
 		String encoding = "utf-8";
@@ -61,7 +63,8 @@ public class Training {
 
 	/**
 	 * 该方法用于统计知网提供的情感词集合所涉及的义原以及出现频度
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	void countSentimentDistribution() throws IOException {
 		Map<String, Integer> sememeMap = new HashMap<String, Integer>();
@@ -82,7 +85,7 @@ public class Training {
 			wordCount++;
 			String word = line.trim();
 			Collection<Concept> concepts = parser.getInnerConcepts(word);
-			//由于目前的词典为知网2000版本，所以默认情况下仅对词典中出现的概念进行统计
+			// 由于目前的词典为知网2000版本，所以默认情况下仅对词典中出现的概念进行统计
 			if (BlankUtils.isBlank(concepts) && autoCombineConcept) {
 				concepts = parser.autoCombineConcepts(word, null);
 			}
@@ -90,20 +93,20 @@ public class Training {
 				conceptCount++;
 				List<String> names = new ArrayList<String>();
 
-				//加入主义原
+				// 加入主义原
 				names.add(c.getMainSememe());
 
-				//加入关系义原
+				// 加入关系义原
 				for (String item : c.getRelationSememes()) {
 					names.add(item.substring(item.indexOf("=") + 1));
 				}
 
-				//加入符号义原
+				// 加入符号义原
 				for (String item : c.getSymbolSememes()) {
 					names.add(item.substring(1));
 				}
 
-				//加入其他义原集合
+				// 加入其他义原集合
 				for (String item : c.getSecondSememes()) {
 					names.add(item);
 				}
@@ -120,7 +123,7 @@ public class Training {
 		}
 		in.close();
 
-		//以下是为了按照义原出现的数量进行排序的代码
+		// 以下是为了按照义原出现的数量进行排序的代码
 		Multimap<Integer, String> map2 = HashMultimap.create();
 		for (String key : sememeMap.keySet()) {
 			map2.put(sememeMap.get(key), key);
@@ -131,8 +134,8 @@ public class Training {
 		}
 		Collections.sort(keys);
 
-		int smallSememeCount = 0; //较少出现的不同义原数量
-		int smallAppearTotal = 0; //较少出现的义原在概念众出现的次数总和
+		int smallSememeCount = 0; // 较少出现的不同义原数量
+		int smallAppearTotal = 0; // 较少出现的义原在概念众出现的次数总和
 		for (int index = (keys.size() - 1); index >= 0; index--) {
 			Integer key = keys.get(index);
 			Collection<String> values = map2.get(key);
@@ -155,15 +158,23 @@ public class Training {
 		System.out.println("wordCount:" + wordCount);
 		System.out.println("conceptCount:" + conceptCount);
 	}
+	
+	public void testDict(){
+		
+		HownetWordTendency tendency = new HownetWordTendency();
+		double val=tendency.getTendency("跌");
+		System.out.println(val);
+	}
 
 	public static void main(String[] args) throws IOException {
 		Training training = new Training();
-		training.countSentimentDistribution();
-		//        System.out.println("test positive:");
-		//        training.test(true);
-		//        
-		//        System.out.println("test negative:");
-		//training.test(false);
+		// training.countSentimentDistribution();
+//		System.out.println("test positive:");
+//		training.test(true);
+//		System.out.println("test negative:");
+//		training.test(false);
+		training.testDict();
 	}
 
+	
 }

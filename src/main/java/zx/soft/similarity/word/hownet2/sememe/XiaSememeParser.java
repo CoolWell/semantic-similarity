@@ -6,8 +6,7 @@ import java.util.Collection;
 import zx.soft.similarity.util.BlankUtils;
 
 /**
- * 义原相似度计算, 实现了SememeParser中定义的抽象方法
- * 
+ * 义原相似度计算
  */
 public class XiaSememeParser extends BaseSememeParser {
 
@@ -16,7 +15,7 @@ public class XiaSememeParser extends BaseSememeParser {
 	}
 
 	/**
-	 * 计算两个义原的相似度	 
+	 * 计算两个义原的相似度
 	 */
 	double getSimilarityBySememeId(final String id1, final String id2) {
 
@@ -34,7 +33,6 @@ public class XiaSememeParser extends BaseSememeParser {
 
 	/**
 	 * 根据汉语定义计算义原之间的相似度，由于可能多个义元有相同的汉语词语，故计算结果为其中相似度最大者
-	 * 
 	 * @param key1
 	 * @param key2
 	 * @return
@@ -71,8 +69,10 @@ public class XiaSememeParser extends BaseSememeParser {
 	 * 计算两个义元之间的相似度，由于义元可能相同，计算结果为其中相似度最大者 similarity = alpha/(distance+alpha),
 	 * 如果两个字符串相同或都为空，直接返回1.0
 	 * 
-	 * @param key1 第一个义原字符串
-	 * @param key2 第二个义原字符串
+	 * @param key1
+	 *            第一个义原字符串
+	 * @param key2
+	 *            第二个义原字符串
 	 * @return
 	 */
 	@Override

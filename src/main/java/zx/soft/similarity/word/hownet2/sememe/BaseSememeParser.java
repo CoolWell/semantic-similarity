@@ -24,12 +24,10 @@ import com.google.common.collect.Multimap;
  * 算法的核心思想请参看论文《汉语词语语义相似度计算研究》或《中文信息相似度计算理论与方法》一书第三章<br/>
  * 
  * 为提高运算速度，义原的加载方式做了调整，只把义原的汉语定义和对应的Id加入到MultiMap对象中，并通过义原的层次化Id计算义原之间的相似度。<br/>
- * 
- * @see {@link zx.soft.similarity.Similarityable}
  */
 public abstract class BaseSememeParser implements HownetMeta, Similarityable {
 
-	protected Logger LOG = LoggerFactory.getLogger(this.getClass());
+	protected Logger Logger = LoggerFactory.getLogger(this.getClass());
 
 	/** 所有的义原都存放到一个MultiMap, Key为Sememe的中文定义, Value为义原的Id */
 	protected static Multimap<String, String> SEMEMES = null;
@@ -48,12 +46,12 @@ public abstract class BaseSememeParser implements HownetMeta, Similarityable {
 	}
 
 	/**
-	 * 从文件中加载义元知识
-	 * 
+	 * 从文件中加载义原知识
 	 * @throws IOException
 	 */
 	public void load(InputStream input) throws IOException {
-		System.out.print("loading sememes...");
+		Logger.info("loading sememes.....");
+
 		long time = System.currentTimeMillis();
 		try {
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
@@ -70,9 +68,6 @@ public abstract class BaseSememeParser implements HownetMeta, Similarityable {
 						String id = startElement.getAttributeByName(QName.valueOf("id")).getValue();
 						SEMEMES.put(cnWord, id);
 						count++;
-						if (count % 100 == 0) {
-							System.out.print(".");
-						}
 					}
 				}
 			}

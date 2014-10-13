@@ -64,7 +64,7 @@ public class SegmentProxy {
 		new NatureRecognition(terms).recognition();
 
 		for (Term term : terms) {
-			results.add(new Word(term.getName(), term.getNatrue().natureStr));
+			results.add(new Word(term.getName(), term.getNatureStr()));
 		}
 
 		return results;

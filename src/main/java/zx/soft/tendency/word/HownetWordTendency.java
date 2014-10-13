@@ -1,8 +1,16 @@
 package zx.soft.tendency.word;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import zx.soft.similarity.word.hownet2.concept.BaseConceptParser;
@@ -17,11 +25,11 @@ import zx.soft.similarity.word.hownet2.sememe.XiaSememeParser;
  */
 public class HownetWordTendency implements WordTendency {
 
-	public static String[] POSITIVE_SEMEMES = new String[] { "良", "喜悦", "夸奖", "满意", "期望", "注意", "致敬", "喜欢", "专", "敬佩",
-			"同意", "爱惜", "愿意", "思念", "拥护", "祝贺", "福", "需求", "奖励", "致谢", "欢迎", "羡慕", "感激", "爱恋" };
+	public static String[] POSITIVE_SEMEMES = new String[] {"良", "喜悦", "夸奖", "满意", "期望", "注意", "致敬", "喜欢", "专", "敬佩", "同意", "爱惜", "愿意", "思念", "拥护", "祝贺", "福",
+			"需求", "奖励", "致谢", "欢迎", "羡慕", "感激", "爱恋" };
 
-	public static String[] NEGATIVE_SEMEMES = new String[] { "莠", "谴责", "害怕", "生气", "悲哀", "着急", "轻视", "羞愧", "烦恼", "灰心",
-			"犹豫", "为难", "懊悔", "厌恶", "怀疑", "怜悯", "忧愁", "示怒", "不满", "仇恨", "埋怨", "失望", "坏" };
+	public static String[] NEGATIVE_SEMEMES = new String[] { "莠", "谴责", "害怕", "生气", "悲哀", "着急", "轻视", "羞愧", "烦恼", "灰心", "犹豫", "为难", "懊悔", "厌恶", "怀疑", "怜悯",
+			"忧愁", "示怒", "不满", "仇恨", "埋怨", "失望", "坏" };
 	private BaseConceptParser conceptParser = null;
 	private BaseSememeParser sememeParser = null;
 
@@ -36,8 +44,8 @@ public class HownetWordTendency implements WordTendency {
 
 	@Override
 	public double getTendency(String word) {
-		double positive = getSentiment(word, POSITIVE_SEMEMES);
-		double negative = getSentiment(word, NEGATIVE_SEMEMES);
+		double positive = getSentiment(word, getDicts(true));
+		double negative = getSentiment(word, getDicts(false));
 		return positive - negative;
 	}
 
@@ -52,7 +60,7 @@ public class HownetWordTendency implements WordTendency {
 		for (String item : sememes) {
 			double total = 0.0;
 			for (String positiveSememe : candidateSememes) {
-				//如果有特别接近的义原，直接返回该相似值，避免其他干扰
+				// 如果有特别接近的义原，直接返回该相似值，避免其他干扰
 				double value = sememeParser.getSimilarity(item, positiveSememe);
 				if (value > 0.9) {
 					return value;
@@ -67,4 +75,25 @@ public class HownetWordTendency implements WordTendency {
 		return max;
 	}
 
+	public static String[] getDicts(boolean flag) {
+		List<String> dicts= new ArrayList<String>();
+		File f = null;
+		if (flag) {
+			f = new File("./dict/sentiment/正面评价词语（中文）.txt");
+		} else {
+			f = new File("./dict/sentiment/负面情感词语（中文）.txt");
+		}
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
+			String line="";
+			while((line=in.readLine())!=null){
+				if(!line.startsWith("##")){
+					dicts.add(line);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dicts.toArray(new String[dicts.size()]);
+	}
 }
